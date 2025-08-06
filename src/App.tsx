@@ -1,5 +1,5 @@
 import './App.css'
-import DiffClearViewer from "./DiffClearViewer";
+import DiffClearViewer from "./page/DiffClearViewer";
 
 function App() {
 
