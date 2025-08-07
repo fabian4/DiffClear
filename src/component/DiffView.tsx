@@ -42,7 +42,7 @@ export const Diff = () => {
   };
 
   return (
-    <div>
+    <div className="diff-view-component-wrapper">
       <div style={{ marginBottom: "10px" }}>
         <button onClick={toggleTheme}>
           Switch to {theme === "light" ? "Dark" : "Light"} Theme

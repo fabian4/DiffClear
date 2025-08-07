@@ -1,21 +1,24 @@
+import { Textarea } from "@headlessui/react";
+import clsx from 'clsx'
+
+
 export const ContentInput = ({ onInput }: { onInput: (value: string) => void }) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     onInput(event.target.value);
   };
 
   return (
-    <div style={{ marginBottom: "20px" }}>
-      <textarea
-        placeholder="Enter your content here..."
+    <div className="flex gap-2">
+      <Textarea
         onChange={handleInputChange}
-        style={{
-          width: "100%",
-          height: "100px",
-          padding: "10px",
-          fontSize: "16px",
-          borderRadius: "4px",
-          border: "1px solid #ccc",
-        }}
+        placeholder="Enter your content here..."
+        className="border data-focus:bg-blue-100 data-hover:shadow"
+      />
+
+      <Textarea
+        onChange={handleInputChange}
+        placeholder="Enter your content here..."
+        className="border data-focus:bg-blue-100 data-hover:shadow"
       />
     </div>
   );
