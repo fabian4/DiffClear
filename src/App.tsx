@@ -1,11 +1,11 @@
 import './App.css'
-import DiffClearViewer from "./DiffClearViewer";
+import HomePage from "./page/HomePage";
 
 function App() {
 
   return (
     <div>
-      <DiffClearViewer />
+      <HomePage />
     </div>
   )
 }
