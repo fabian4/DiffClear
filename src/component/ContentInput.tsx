@@ -1,22 +1,28 @@
 import { Field, Label, Textarea } from "@headlessui/react";
 import clsx from 'clsx'
 
+interface ContentInputProps {
+  oldValue: string;
+  newValue: string;
+  onInputOldValue: (value: string) => void;
+  onInputNewValue: (value: string) => void;
+}
 
-export const ContentInput = ({ onInputOldValue, onInputNewValue }: { onInputOldValue: (value: string) => void, onInputNewValue: (value: string) => void }) => {
+export const ContentInput = ({ oldValue, newValue, onInputOldValue, onInputNewValue }: ContentInputProps) => {
+  
   const handleOldValue = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     onInputOldValue(event.target.value);
   };
-
 
   const handleNewValue = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     onInputNewValue(event.target.value);
   };
 
-
   return (
     <div className="flex gap-1 px-2 h-full"> 
       <Field className="block w-full h-full">
         <Textarea
+          value={oldValue}
           onChange={handleOldValue}
           placeholder="Enter your content here..."
           className={clsx(
@@ -28,6 +34,7 @@ export const ContentInput = ({ onInputOldValue, onInputNewValue }: { onInputOldV
       </Field>
       <Field className="block w-full h-full">
         <Textarea
+          value={newValue}
           onChange={handleNewValue}
           placeholder="Enter your content here..."
           className={clsx(

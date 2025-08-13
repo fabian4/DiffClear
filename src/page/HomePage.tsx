@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ContentInput } from "../component/ContentInput";
 import { viewModeEnum } from "./HomePage.types";
-import { Button, Field, Label, Switch } from "@headlessui/react";
+import { Button } from "@headlessui/react";
 import { Diff } from "../component/DiffView";
 
 const HomePage = () => {
@@ -20,16 +20,33 @@ const HomePage = () => {
   }
 
   const toggleViewMode = () => {
-    setViewMode(
-      viewMode === viewModeEnum.Edit ? viewModeEnum.Diff : viewModeEnum.Edit
-    );
+    if (oldValue !== '' || newValue !== '') {
+      setViewMode(
+        viewMode === viewModeEnum.Edit ? viewModeEnum.Diff : viewModeEnum.Edit
+      );
+    }
+    else {
+      alert('Please enter something before switching views.');
+    }
   };
 
   return (
     <div className="flex flex-col h-screen">
       <div className="flex justify-between p-1">
-        <div className="">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-5 w-5 stroke-current"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path> </svg>
+        <div className="flex gap-5">
+          <svg width="36" height="28" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 2.5C6 1.39543 6.89543 0.5 8 0.5H21.1716C21.702 0.5 22.2107 0.710714 22.5858 1.08579L27.4142 5.91421C27.7893 6.28929 28 6.79799 28 7.32843V25.5C28 26.6046 27.1046 27.5 26 27.5H8C6.89543 27.5 6 26.6046 6 25.5V2.5Z" 
+                  stroke="#24292e" stroke-width="1.2" stroke-linejoin="round"/>
+            <path d="M21 0.5V6.5C21 7.05228 21.4477 7.5 22 7.5H28" stroke="#24292e" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <g transform="translate(6 5) scale(0.9)">
+              <path d="M12 3V21" stroke="#24292e" stroke-width="2" stroke-linecap="round"/>
+              <path d="M8 7L16 7" stroke="#24292e" stroke-width="2" stroke-linecap="round"/>
+              <path d="M5 11L11 11" stroke="#d73a49" stroke-width="2" stroke-linecap="round"/>
+              <path d="M13 11L19 11" stroke="#28a745" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="6" cy="15" r="2" fill="#d73a49"/>
+              <circle cx="18" cy="15" r="2" fill="#28a745"/>
+            </g>
+          </svg>
         </div>
         <div className="p-1">
           <Button 
@@ -83,6 +100,8 @@ const HomePage = () => {
       {
         viewMode === viewModeEnum.Edit && (
           <ContentInput 
+            oldValue={oldValue}
+            newValue={newValue}
             onInputOldValue={onInputOldValue} 
             onInputNewValue={onInputNewValue}
           ></ContentInput>
